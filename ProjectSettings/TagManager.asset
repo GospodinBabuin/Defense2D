@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Allies
+  - Dead
+  - Enemy
+  - AttackPoint
+  - PlayerResources
+  - Drop
+  - EnviromentBeams
+  - EnviromentBackground
+  - GlobalLight
+  - InfoWindow
+  - Spike
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Building
+  - Allies
+  - Player
+  - RoadLamp
+  - Enemy
+  - Mushroom
+  - Goblin
+  - Skeleton
+  - FlyingEye
+  - Drops
+  - Wizard
+  - EnemyBuilding
+  - 
+  - 
+  - GoesToPosition
+  - WarriorLvl1
+  - WarriorLvl2
+  - WarriorLvl3
+  - 
+  - Chest
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: GameObject
+    uniqueID: 133247577
+    locked: 0
+  - name: Ground
+    uniqueID: 2572605347
+    locked: 0
+  - name: UI
+    uniqueID: 2246933519
+    locked: 0

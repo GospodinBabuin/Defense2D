@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52de63763577f0545a802678a77310ec, type: 3}
+  m_Name: Barricade
+  m_EditorClassIdentifier: 
+  _id: Barricade
+  _buildingArea: 4
+  _interactionRadius: 0
+  _health: 15
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _buildingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _prefab: {fileID: 5373330553216305747, guid: e0868e2099f22704cb8f4781f4dffe5f, type: 3}
+  _spriteIcon: {fileID: 21300214, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
