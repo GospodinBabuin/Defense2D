@@ -1,24 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FaderController : MonoBehaviour
 {
     private bool _isLoading;
-
-    private static FaderController _instance;
+    private Fader _fader;
 
     private void Awake()
     {
-        if (_instance !=  null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _instance = this;
         DontDestroyOnLoad(gameObject);
+
+        _fader = GetComponentInChildren<Fader>();
     }
 
     public void LoadScene(string sceneName)
@@ -37,13 +30,13 @@ public class FaderController : MonoBehaviour
     {
         _isLoading = true;
 
-        var waitFading = true;
-        Fader.Instance.FadeIn(() => waitFading = false);
+        bool waitFading = true;
+        _fader.FadeIn(() => waitFading = false);
 
         while (waitFading)
             yield return null;
 
-        var async = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
 
         while (async.progress < 0.9f)
@@ -52,7 +45,7 @@ public class FaderController : MonoBehaviour
         async.allowSceneActivation = true;
 
         waitFading = true;
-        Fader.Instance.FadeOut(() => waitFading = false);
+        _fader.FadeOut(() => waitFading = false);
 
         while (waitFading)
             yield return null;

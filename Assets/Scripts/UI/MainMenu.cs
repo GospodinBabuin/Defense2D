@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject continueGame;
-    public GameObject credits;
+    [SerializeField] private GameObject credits;
+    [SerializeField] private SceneLoader sceneLoader;
 
     
     private void Start()
@@ -16,6 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         if (!File.Exists(Application.persistentDataPath + "/GameSave.save"))
             continueGame.SetActive(false);
+
         credits.SetActive(false);
     }
 
@@ -23,8 +21,14 @@ public class MainMenu : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/GameSave.save"))
             File.Delete(Application.persistentDataPath + "/GameSave.save");
+
+        sceneLoader.LoadScene("Game");
     }
-    
+    public void ContinueGame()
+    {
+        sceneLoader.LoadScene("Game");
+    }
+
     public void Credits()
     {
         if (credits.activeInHierarchy == false)

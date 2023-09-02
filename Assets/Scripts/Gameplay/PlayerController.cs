@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerController : Unit
 {
     [SerializeField] private float movementDirectory;
@@ -7,6 +5,8 @@ public class PlayerController : Unit
     public GameObject prefab;
     private HealthBar _healthIcon;
     public int maxHeath;
+
+    private InputActions _input;
 
     void Start()
     {
@@ -18,25 +18,25 @@ public class PlayerController : Unit
 
     private void Update()
     {
-        if (IsDead != true)
+        if (IsDead == true)
+            return;
+
+        movementDirectory = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(movementDirectory, 0, 0) * Time.deltaTime * Speed;
+
+        Animator.SetFloat("Speed", Mathf.Abs(movementDirectory));
+
+        if (!Mathf.Approximately(0, movementDirectory))
+            transform.rotation = movementDirectory < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+
+        if (Input.GetKeyUp(KeyCode.Space) && Time.time >= NextAttackTime)
         {
-            movementDirectory = Input.GetAxis("Horizontal");
-            transform.position += new Vector3(movementDirectory, 0, 0) * Time.deltaTime * Speed;
-
-            Animator.SetFloat("Speed", Mathf.Abs(movementDirectory));
-
-            if (!Mathf.Approximately(0, movementDirectory))
-                transform.rotation = movementDirectory < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
-
-            if (Input.GetKeyUp(KeyCode.Space) && Time.time >= NextAttackTime)
-            {
-                Attack();
-                NextAttackTime = Time.time + 1f / AttackRate;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Tab))
-                MenuUI.Instance.ShowMenu(MenuUI.MenuState.BUILDINGMENU);
+            Attack();
+            NextAttackTime = Time.time + 1f / AttackRate;
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+            MenuUI.Instance.ShowMenu(MenuUI.MenuState.BUILDINGMENU);
     }
 
     public void RestoreHealth(int health)

@@ -1,34 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fader : MonoBehaviour
 {
-    private const string FADER_PATH = "Fader";
-
-    [SerializeField] private Animator _animator;
-
-    private static Fader _instance;
-
-    public static Fader Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                var prefab = Resources.Load<Fader>(FADER_PATH);
-                _instance = Instantiate(prefab);
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-            return _instance;
-        }
-    }
+    private Animator _animator;
 
     public bool isFading { get; private set; }
 
     private Action _fadedInCallback;
     private Action _fadedOutCallback;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        _animator = GetComponent<Animator>();
+        _animator.SetBool("faded", false);
+    }
+
 
     public void FadeIn(Action fadedInCallback)
     {

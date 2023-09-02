@@ -110,7 +110,7 @@ public class WorldManager : MonoBehaviour
         yield return new WaitForSeconds(10);
         if (File.Exists(Application.persistentDataPath + "/GameSave.save"))
             File.Delete(Application.persistentDataPath + "/GameSave.save");
-        GameObject.Find("LoadScene").GetComponent<LoadScenes>().LoadScene("Main menu");
+        GameObject.Find("LoadScene").GetComponent<SceneLoader>().LoadScene("Main menu");
     }
 
     private void Load()
