@@ -15,19 +15,19 @@ public class PlayerInputs : MonoBehaviour
         MoveInput(value.Get<float>());
     }
 
-    private void OnAtack(InputValue value)
+    private void OnAttack(InputValue value)
     {
         AtackInput(value.isPressed);
     }
 
-    private void OnShop()
+    private void OnShop(InputValue value)
     {
-        ShopInput(valut.isPressed);
+        ShopInput(value.isPressed);
     }
 
     private void OnMenu(InputValue value)
     {
-        MenuInput(value.isPressed)
+        MenuInput(value.isPressed);
     }
 
     private void MoveInput(float newMoveDirection)

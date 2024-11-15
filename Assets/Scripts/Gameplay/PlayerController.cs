@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerController : Unit
 {
     [SerializeField] private float movementDirectory;
@@ -5,9 +7,7 @@ public class PlayerController : Unit
     public GameObject prefab;
     private HealthBar _healthIcon;
     public int maxHeath;
-
-    private InputActions _input;
-
+    
     void Start()
     {
         Animator = gameObject.GetComponent<Animator>();
